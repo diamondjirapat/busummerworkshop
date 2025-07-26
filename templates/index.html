@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Todo App</title>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='wtf.css') }}">
 </head>
 <body>
-    <h1>Simple Todo App</h1>
+    <h1>Todo List</h1>
 
     <form action="/create-todo" method="post">
-        <input type="text" name="item" placeholder="Enter a new todo" required>
-        <button type="submit">Add</button>
+        <input type="text" name="item" placeholder="New task" required>
+        <input type="date" name="due" required>
+        <button type="submit">Add Todo</button>
     </form>
 
-    <h2>Todo List:</h2>
-    <ul>
-        {% for todo in todos %}
-            <li>{{ todo }}</li>
-        {% else %}
-            <li>No todos yet!</li>
-        {% endfor %}
-    </ul>
+    <form action="/todos" method="get" style="margin-bottom: 10px;">
+        <button type="submit">Show all to</button>
+    </form>
+
+    <form action="/upcomming" method="get" style="margin-bottom: 10px;">
+        <button type="submit">Show Upcoming Todos</button>
+    </form>
+
+    {% if todos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Task</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.task }}</td>
+                        <td>{{ todo.dur }}</td>
+                        <td class="actions">
+                            <form action="/delete-todo" method="post">
+                                <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                                <button type="submit">Delete</button>
+                            </form>
+
+                            <form action="/edit-todo/{{ todo.id }}" method="post">
+                                <input type="text" name="item" value="{{ todo.task }}" required>
+                                <input type="date" name="due" value="{{ todo.dur }}" required>
+                                <button type="submit">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No todos found.</p>
+    {% endif %}
 </body>
 </html>

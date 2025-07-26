@@ -1,0 +1,67 @@
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    25% { color: orange; }
+    50% { color: yellow; }
+    75% { color: lime; }
+    100% { color: blue; }
+}
+
+body {
+    font-family: 'Comic Sans MS';
+    background: linear-gradient(30deg, #ffc6df , #60b9fc);
+    color: #000;
+    padding: 50px;
+    text-align: center;
+    font-size: 24px;
+}
+
+h1 {
+    animation: spin 0.5s linear infinite, rainbow 2s linear infinite;
+    font-size: 60px;
+    text-shadow: 3px 3px white;
+    margin-bottom: 40px;
+}
+
+form {
+    margin-bottom: 40px;
+    background-color: #d1ef00;
+    padding: 20px;
+    border: 5px solid #000;
+    box-shadow: 0 0 10px 5px #d1e97956;
+    transform: rotate(-15deg);
+    margin-top: 50px;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 200px;
+    background: rgb(20, 20, 20);
+    transform: rotate(10deg);
+}
+
+th, td {
+    border: 3px double #000;
+    padding: 20px;
+    font-size: 20px;
+}
+
+th {
+    background-color: rgb(112, 23, 68);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.actions form {
+    background-color: #965779;
+    padding: 10px;
+    border: 2px dotted #000;
+    transform: skewX(-10deg);
+}
